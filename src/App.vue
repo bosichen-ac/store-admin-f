@@ -2,7 +2,9 @@
   <TopNav />
   <router-view
     :orders="orders"
+    :history="history"
     :products="products"
+    @getAllOrders="getAllOrders"
     @fetchOrders="fetchOrders"
     @completeOrder="completeOrder"
     @addProductsToList="addProductsToList"
@@ -27,6 +29,7 @@ export default {
   data() {
     return {
       orders: [],
+      history: [],
       products: [],
       product: {}
     }
@@ -67,6 +70,19 @@ export default {
           console.log(error)
           alert('Error occurred while fetching products')
         })
+    },
+    async getAllOrders() {
+      await fetch(`${makelineServiceUrl}orders`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          if (data) {
+            this.history = data;
+          } else {
+            console.log("No any order history from server")
+          }
+        })
+        .catch(error => console.error(error))
     },
     async fetchOrders() {
       await fetch(`${makelineServiceUrl}order/fetch`)
