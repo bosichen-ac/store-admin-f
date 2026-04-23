@@ -2,7 +2,7 @@
   <nav>
     <div class="logo">
       <a href="/">
-        <span class="back-to-home">Best Buy? &nbsp;&nbsp;</span>
+        <span class="back-to-home">Best Buy ?</span>
       </a>
       Admin Portal
     </div>
